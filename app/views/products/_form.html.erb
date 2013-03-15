@@ -1,0 +1,9 @@
+<%= form_for Product.new do |f| %>
+	
+  <p>
+		<%= f.file_field :image, multiple: true, name: "product[image]" %>  
+	</p>
+	
+	<p><%= f.submit %></p>
+
+<% end %>

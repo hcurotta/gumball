@@ -1,0 +1,3 @@
+$("#file_drop_area").hide();
+$("<%= escape_javascript(render('product', :product => @product)) %>").hide().appendTo("#first_product").fadeIn(1000);
+$("#new_product_box_<%= @product.id %>").append("<%= escape_javascript(render('details_form', :@product => @product)) %>");

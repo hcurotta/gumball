@@ -1,0 +1,15 @@
+<h1>Product Listing</h1>
+
+
+<div class="products">
+<ul>
+	<div id="first_product">
+		<div class="product-box" id="file_drop_area">
+			<li><%= render 'form' %></li>
+		</div>
+	</div>
+	<% @products.each do |product| %>
+ 		<%= render 'product', :product => product %>
+	<% end %>	
+</ul>	
+</div>

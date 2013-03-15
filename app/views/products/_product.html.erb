@@ -1,0 +1,11 @@
+<li>
+	<div class="product-box" id="<%= "new_product_box_#{product.id}" %>">
+		<%= image_tag product.image_url(:thumb).to_s %>
+		</br>
+		<%= product.name %>
+		</br>
+		<a href="<%= product.short_url %>" class="gumroad-button">Buy this</a>
+		
+		
+	</div>
+</li>
