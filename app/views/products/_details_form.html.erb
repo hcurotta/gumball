@@ -2,17 +2,19 @@
 	<%= form_for @product, :html => { :onsubmit =>
 	'showSpinner()' }, remote: true do |f| %>
 	
-	  <p>
 	    <%= f.text_field :name, :placeholder => "Product Name" %>
-	  </p>
-		<p>
-	    <%= f.text_area :description, placeholder: "Description" %>
-		</p>
-		<p>
-	    <%= f.text_field :price, placeholder: "Price" %>
-		</p>
 
-		<p><%= f.submit 'Add Product', :class => 'button'%></p>
+	    <%= f.text_area :description, placeholder: "Description" %>
+			
+			<div class='price-qty'>
+				<div class="qty-field">
+					<%= f.number_field :qty, placeholder: "QTY" %>
+				</div>
+					<div class='input-prepend price'>
+				    <span class="add-on">$</span><%= f.number_field :price, placeholder: "Price", class: "price" %>
+					</div>
+				</div>
+		<p><%= f.submit 'Add Product', :class => 'btn btn-block'%></p>
 
 	<% end %>
 </div>

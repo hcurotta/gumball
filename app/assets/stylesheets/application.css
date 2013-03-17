@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require reset.css
+ *= require bootstrap.css
  *= require_self
  *= require_tree .
  */
@@ -111,6 +112,11 @@ img.delete_product {
 	text-align: left;
 }
 
+.product-box .stock-left {
+	color: green;
+	float: left;
+}
+
 .product-box a {
 	float: right;
 }
@@ -148,18 +154,24 @@ img.spinner {
 	max-width: 100%;
 }
 
-#add_details input, textarea {
-    font-size: 1em;
-    margin-bottom: 3px;
-    width: 100%;
-	padding: 5px;
-   border:none; 
-   -webkit-border-radius:3px; 
-   -moz-border-radius:3px; 
-   border-radius:3px; 
-   -webkit-box-shadow:0 0 3px #666 inset; 
-   -moz-box-shadow:0 0 3px #666 inset; 
-   box-shadow:0 0 3px #666 inset; 
+
+.price-qty {
+	
+}
+.price {
+    width: 120px;
+	display:inline;
+}
+
+.qty-field {
+	width: 40px;
+	margin-right: 50px;
+	display:inline-block;
+}
+
+#add_details input[type="text"], textarea {
+/*    margin-bottom: 3px;
+*/    width: 100%;
 
    -webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
@@ -167,8 +179,17 @@ img.spinner {
 
 }
 
+#add_details input[type="number"] {
+	height: 20px;
+	width: 60px;
+}
+
 #add_details textarea {
     height: 50px
+}
+
+#add_details input[type="text"] {
+    height: 30px
 }
 
 .button {

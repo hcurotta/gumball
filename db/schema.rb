@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317072457) do
+ActiveRecord::Schema.define(:version => 20130317122734) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20130317072457) do
     t.string   "short_url"
     t.integer  "price"
     t.string   "gumroad_id"
+    t.integer  "qty"
   end
 
 end

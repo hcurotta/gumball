@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :image, :name, :price, :gumroad_id
+  attr_accessible :description, :image, :name, :price, :gumroad_id, :qty
 
   mount_uploader :image, ImageUploader
   

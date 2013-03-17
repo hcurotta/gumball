@@ -14,8 +14,9 @@
 
 		<p><%= product.description %></p>
 
-
-
+		<% if product.qty? %>
+			<p class='stock-left'><%= product.qty %> in stock</p>
+		<% end %>
 		<% if product.short_url? && product.price? %>
 			<a href="<%= product.short_url %>" class="gumroad-button">Buy me</a>
 		<% end %>
