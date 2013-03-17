@@ -1,2 +1,19 @@
-$("#add_details").hide();
-$("#new_product_box_<%= @product.id %>").append("<%= @product.name %>");
+// $("#add_details").hide();
+// $("#product_box_<%= @product.id %>").append("<%= @product.name %>");
+$("#new_product_box").html("<%= escape_javascript(render('form')) %>")
+$("#first_product").prepend("<%= escape_javascript(render('product', :product => @product)) %>");
+$('#new_product').fileupload()
+
+$('#new_product').bind('fileuploadsubmit', function (e, data) {
+	console.log("<%= escape_javascript(image_tag 'ajax-loader.gif') %>")
+	$('.file-drop-zone').html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
+	$('.file-drop-zone').attr('class', 'product-loading')
+})
+
+
+var $container = $('.products');
+$container.imagesLoaded(function(){
+	$container.masonry();
+	$container.masonry('reload')
+});
+

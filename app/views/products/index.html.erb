@@ -2,14 +2,45 @@
 
 
 <div class="products">
-<ul>
-	<div id="first_product">
-		<div class="product-box" id="file_drop_area">
-			<li><%= render 'form' %></li>
-		</div>
+	<div class="product-box" id="new_product_box">
+		<%= render 'form' %>
 	</div>
+	<div id="first_product"></div>
+	
 	<% @products.each do |product| %>
  		<%= render 'product', :product => product %>
 	<% end %>	
-</ul>	
 </div>
+
+<script>
+$(document).ready(function() {
+	$('#new_product').bind('fileuploadsubmit', function (e, data) {
+		console.log("<%= escape_javascript(image_tag 'ajax-loader.gif') %>")
+		$('.file-drop-zone').html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
+		$('.file-drop-zone').attr('class', 'product-loading')
+	})
+	
+	reloadMasonry()	
+});
+
+function showSpinner() {
+	console.log('showing spinner')
+	$('#add_details').html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
+}
+
+function hideProduct(product) {
+	$('#'+product).hide();
+	reloadMasonry()
+}
+
+function reloadMasonry() {
+	var $container = $('.products');
+	$container.imagesLoaded(function(){
+		$container.masonry({
+	    // options
+	    columnWidth : 250,
+			isAnimated: true
+		});
+	});
+}
+</script>
