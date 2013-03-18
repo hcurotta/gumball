@@ -85,13 +85,14 @@ require 'open-uri'
   end
   
   def sold
-    @product = Product.find(params[:id])
+    puts params
     
-    @product.qty = @product.qty - 1
-    
-    @product.sold
-    
-    render text: 'https://gumballer.herokuapp.com/'
+    # @product = Product.find(params[:id])
+    # 
+    # @product.qty = @product.qty - 1
+    # 
+    # @product.sold
+    # 
   end
   
 end
