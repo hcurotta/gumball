@@ -18,7 +18,7 @@ require 'open-uri'
     @products.reverse!
     
     @user_is_admin = user_is_admin?
-    
+    puts @user_is_admin
   end
   
   def create
@@ -82,6 +82,16 @@ require 'open-uri'
     @product.delete_on_gumroad(session[:token])
     
     @product.destroy
+  end
+  
+  def sold
+    @product = Product.find(params[:id])
+    
+    @product.qty = @product.qty - 1
+    
+    @product.sold
+    
+    render text: 'https://gumballer.herokuapp.com/'
   end
   
 end

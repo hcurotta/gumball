@@ -4,6 +4,8 @@ Gumball::Application.routes.draw do
   
   post "/login" => "pages#login", as: :login
   
+  post "/sold" => "products#sold"
+  
   resources :products
     
   # The priority is based upon order of creation:

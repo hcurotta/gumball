@@ -6,6 +6,7 @@ module ApplicationHelper
 
   def user_is_admin?
     fb_request = parse_signed_request
+    puts fb_request['page']['admin'] if fb_request && fb_request['page']
     return fb_request['page']['admin'] if fb_request && fb_request['page']
   end
 

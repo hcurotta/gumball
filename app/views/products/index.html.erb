@@ -6,7 +6,7 @@
 <div class="products">
 
 
-<% if @user_is_admin = true %>
+<% if @user_is_admin == true %>
 	<div class="product-box" id="new_product_box">
 		<%= render 'form' %>
 	</div>
