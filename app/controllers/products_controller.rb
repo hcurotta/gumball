@@ -87,12 +87,12 @@ require 'open-uri'
   def sold
     puts params
     
-    # @product = Product.find(params[:id])
-    # 
-    # @product.qty = @product.qty - 1
-    # 
-    # @product.sold
-    # 
+    @product = Product.find_by_gumroad_id(params[:permalink])
+    @product.qty = @product.qty - 1
+    @product.save
+    
+    render text: "sold"
+    
   end
   
 end
