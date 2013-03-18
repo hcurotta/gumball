@@ -88,7 +88,7 @@ require 'open-uri'
     puts params
     
     @product = Product.find_by_gumroad_id(params[:permalink])
-    @product.qty = (product.qty.to_i-1)
+    @product.qty = (@product.qty.to_i-1)
     @product.save
     
     render text: "sold"
