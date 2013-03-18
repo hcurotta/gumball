@@ -1,9 +1,9 @@
 	<div class="product-box" id="<%= "product_box_#{product.id}" %>">
-
-	<%= link_to product, method: :delete, remote: true, onClick: "hideProduct('product_box_#{product.id}')" do %>
-		<%= image_tag("close.png", class: "delete_product") %>
+	<% if @user_is_admin = true %>
+		<%= link_to product, method: :delete, remote: true, onClick: "hideProduct('product_box_#{product.id}')" do %>
+			<%= image_tag("close.png", class: "delete_product") %>
+		<% end %>
 	<% end %>
-
 		<%= image_tag product.image_url(:thumb).to_s %>
 
 		

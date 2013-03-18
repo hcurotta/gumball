@@ -1,6 +1,8 @@
 Gumball::Application.routes.draw do
   
-  root to: "products#index"
+  match "/" => "products#index"
+  
+  post "/login" => "pages#login", as: :login
   
   resources :products
     

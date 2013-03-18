@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
 require 'open-uri'
+# include FacebookHelper
 
   def login
     
@@ -15,6 +16,9 @@ require 'open-uri'
     @product = Product.new
     @products = Product.all
     @products.reverse!
+    
+    @user_is_admin = user_is_admin?
+    
   end
   
   def create
@@ -23,8 +27,14 @@ require 'open-uri'
   end
   
   def update
+    
+    params[:product][:price] 
+    
     @product = Product.find_by_id(params[:id])    
     @product.update_attributes(params[:product])
+    
+    @product.price *= 100
+    @product.save
     
     puts @product.name
     puts @product.image.file.path

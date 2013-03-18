@@ -1,4 +1,5 @@
-module ApplicationHelper
+module FacebookHelper
+
   def user_likes_page?
     fb_request = parse_signed_request
     return fb_request['page']['liked'] if fb_request && fb_request['page']

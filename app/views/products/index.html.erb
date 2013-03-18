@@ -1,14 +1,20 @@
-<h1>Product Listing</h1>
+
+
+<!-- <h1>Product Listing</h1> -->
 
 
 <div class="products">
+
+
+<% if @user_is_admin = true %>
 	<div class="product-box" id="new_product_box">
 		<%= render 'form' %>
 	</div>
+<% end %>
 	<div id="first_product"></div>
 	
 	<% @products.each do |product| %>
- 		<%= render 'product', :product => product %>
+ 		<%= render 'product', {:product => product, :user_is_admin => @user_is_admin} %>
 	<% end %>	
 </div>
 
@@ -21,6 +27,11 @@ $(document).ready(function() {
 	})
 	
 	reloadMasonry()	
+	
+	$('#reveal-login').click(function() {
+	  $("#login-form").show("slide", { direction: "right" }, 400);
+		$(this).hide();
+	});
 });
 
 function showSpinner() {
