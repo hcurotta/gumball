@@ -112,6 +112,7 @@ h2.price {
 	color: #006A8B;
 }
 
+
 img.delete_product {
 	position:absolute;
 	margin-top: 5px;
@@ -129,6 +130,10 @@ img.delete_product {
 .product-box .stock-left {
 	color: green;
 	float: left;
+}
+
+.product-box .sold {
+	color: red;
 }
 
 .product-box a {

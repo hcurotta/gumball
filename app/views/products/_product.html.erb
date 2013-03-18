@@ -16,9 +16,13 @@
 
 		<% if product.qty? %>
 			<p class='stock-left'><%= product.qty %> in stock</p>
+		<% elsif product.qty.to_i < 1 %>	
+			<p class='stock-left sold'>SOLD</p>
 		<% end %>
-		<% if product.short_url? && product.price? %>
+		
+		<% if product.short_url? && product.qty.to_i > 0 %>
 			<a href="<%= product.short_url %>" class="gumroad-button">Buy me</a>
+		
 		<% end %>
 		
 
