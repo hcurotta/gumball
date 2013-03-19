@@ -4,8 +4,8 @@ require 'open-uri'
 
   def login
     
-    email = "hcurotta@gmail.com"
-    password = "s3attle"
+    email = "alicehboyd@gmail.com"
+    password = "delavela"
     client = JSON.parse(RestClient.post 'https://api.gumroad.com/v1/sessions', :email => email, :password => password)
 
     @token = client["token"]
