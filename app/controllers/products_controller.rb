@@ -78,6 +78,9 @@ require 'open-uri'
   end
   
   def destroy
+    login
+    session[:token] = @token    
+    
     @product = Product.find(params[:id])
     @product.delete_on_gumroad(session[:token])
     
