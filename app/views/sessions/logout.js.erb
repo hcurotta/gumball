@@ -1,0 +1,13 @@
+$("#login_spinner").hide();
+$("#logout").hide();
+$("#reveal-login").show();
+$('#new_product_box').remove();
+
+$('.close-button').hide();
+
+
+var $container = $('.products');
+$container.imagesLoaded(function(){
+	$container.masonry();
+	$container.masonry('reload')
+});

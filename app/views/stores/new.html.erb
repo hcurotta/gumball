@@ -1,0 +1,29 @@
+<div class='new-store'>
+
+	<h1>Woop!</h1>
+	<h2>Nice work! Gumball is now up and running on your page.</br> Time to create your store.</h2>
+
+
+<div class = 'new-store-box'>
+	
+
+	<%= form_for @store do |f| %>
+
+		<% if @store.errors.any? %>
+	      <h3 class='error-explanation'>All fields are required</h3>
+	  <% end %>
+
+
+		<%= f.text_field :name, placeholder: "Store Name" %>
+		</br>
+		<%= f.text_field :owner_email, placeholder: "Your Email" %>
+		</br>
+		<%= f.hidden_field :fb_page_id, :value => @fb_page_id %>
+		<%= f.submit "Create Your Store!", class: 'btn btn-info' %>
+	
+	<% end %>
+
+
+</div>
+<div class="credit">Created by <%= link_to "@HiHarryHere", "http://www.twitter.com/hiharryhere", :target => "_blank" %></div>
+</div>

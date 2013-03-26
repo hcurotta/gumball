@@ -1,12 +1,15 @@
 Gumball::Application.routes.draw do
   
-  match "/" => "products#index"
+  match "/" => "stores#home"
   
-  post "/login" => "pages#login", as: :login
+  post "/login" => "sessions#login", as: :login
+  get "/logout" => "sessions#logout", as: :logout
   
   post "/sold" => "products#sold"
   
   resources :products
+  
+  resources :stores, :except => :show
     
   # The priority is based upon order of creation:
   # first created -> highest priority.

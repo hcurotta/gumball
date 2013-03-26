@@ -1,94 +1,67 @@
 class ProductsController < ApplicationController
 require 'open-uri'
 # include FacebookHelper
-
-  def login
-    
-    email = "alicehboyd@gmail.com"
-    password = "delavela"
-    client = JSON.parse(RestClient.post 'https://api.gumroad.com/v1/sessions', :email => email, :password => password)
-
-    @token = client["token"]
-    
-  end
   
   def index
+    @store = Store.find_by_fb_page_id(params[:fb_page_id])
     @product = Product.new
-    @products = Product.all
+    @products = @store.products.all
     @products.reverse!
     
-    @user_is_admin = user_is_admin?
-    puts @user_is_admin
+    @user_is_admin = params[:is_admin].to_bool
+    puts params[:is_admin]
+    puts @user_is_admin.class
+    # @user_is_admin = true
+    
+    
   end
   
   def create
     @product = Product.create(params[:product])
+    @store = Store.find_by_fb_page_id(session[:fb_page_id])
+    @product.store_id = @store.id
+    @product.save
     
   end
   
   def update
-    
-    params[:product][:price] 
     
     @product = Product.find_by_id(params[:id])    
     @product.update_attributes(params[:product])
     
     @product.price *= 100
     @product.save
-    
-    puts @product.name
-    puts @product.image.file.path
-    
-    login
-    
-    puts @token
-    
-    
+
+    #     
     # fname = File.basename($0) << '.' << $$.to_s
     #  File.open(fname, 'wb') do |fo|
-    #    fo.print open(@product.image.url).read
+    #    fo.print open(@product.image.file.file).read
     #  end
     #  
     #  preview = File.new(fname)
-    #  
+    #    
+    #   
+    #  preview = @product.image.file.path
     
-     
+    token = cookies[:token]
     
-    session[:token] = @token    
-    
-    link = JSON.parse(RestClient.post 'https://api.gumroad.com/v1/links', 
-       {:token => session[:token],
-          :url => 'www.google.com',
-          :description => @product.description,
-          # :preview => preview,
-          :name => @product.name, 
-          :price => @product.price,
-          :require_shipping => true})
-    
-    puts "IM HERE!!"
-    puts link
-    @product.short_url = link["link"]["short_url"]
-    @product.gumroad_id = link["link"]["id"]
-    
-    @product.save
-    
-    respond_to do |format|
-      format.js
+    if @product.create_link(token)
+      render template: ''
+    else
+      
     end
+   
+  
   end
   
   def destroy
-    login
-    session[:token] = @token    
-    
     @product = Product.find(params[:id])
-    @product.delete_on_gumroad(session[:token])
+    # @product.delete_on_gumroad(cookies[:token])
     
     @product.destroy
   end
   
   def sold
-    puts params
     
     @product = Product.find_by_gumroad_id(params[:permalink])
     @product.qty = (@product.qty.to_i-1)

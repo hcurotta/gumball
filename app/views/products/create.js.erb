@@ -5,6 +5,7 @@ $("#new_product_box").append("<%= escape_javascript(render('details_form', :@pro
 
 
 var $container = $('.products');
+
 $container.imagesLoaded(function(){
 	$container.masonry();
 	$container.masonry('reload')

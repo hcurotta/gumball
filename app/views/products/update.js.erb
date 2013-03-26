@@ -1,7 +1,8 @@
 // $("#add_details").hide();
 // $("#product_box_<%= @product.id %>").append("<%= @product.name %>");
-$("#new_product_box").html("<%= escape_javascript(render('form')) %>")
+$("#new_product_box").remove();
 $("#first_product").prepend("<%= escape_javascript(render('product', :product => @product)) %>");
+$("#first_product").before("<%= escape_javascript(render('form')) %>")
 $('#new_product').fileupload()
 
 $('#new_product').bind('fileuploadsubmit', function (e, data) {

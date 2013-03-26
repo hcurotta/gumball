@@ -9,6 +9,11 @@ module ApplicationHelper
     puts fb_request['page']['admin'] if fb_request && fb_request['page']
     return fb_request['page']['admin'] if fb_request && fb_request['page']
   end
+  
+  def page_id
+    fb_request = parse_signed_request
+    return fb_request['page']['id']
+  end
 
   # based on http://www.chilipepperdesign.com/2011/02/15/reveal-fan-gate-like-gate-facebook-iframe-tab-tutorial-with-php
   def parse_signed_request

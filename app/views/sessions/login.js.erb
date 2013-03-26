@@ -1,0 +1,22 @@
+$("#login_spinner").hide();
+$("#logout").show();
+
+$('.step3-help').remove();
+
+$("#first_product").before("<%= escape_javascript(render 'products/form') %>")
+$('.close-button').show();
+
+$('#new_product').bind('fileuploadsubmit', function (e, data) {
+	console.log("<%= escape_javascript(image_tag 'ajax-loader.gif') %>")
+	$('.file-drop-zone').html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
+	$('.file-drop-zone').attr('class', 'product-loading')
+})
+
+$('#new_product').fileupload()	
+
+
+var $container = $('.products');
+$container.imagesLoaded(function(){
+	$container.masonry();
+	$container.masonry('reload')
+});

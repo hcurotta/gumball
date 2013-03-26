@@ -1,16 +1,45 @@
-
-
-<!-- <h1>Product Listing</h1> -->
-
-
-<div class="products">
-
-
 <% if @user_is_admin == true %>
-	<div class="product-box" id="new_product_box">
-		<%= render 'form' %>
+	<div id="login-box">
+		
+		<div id="login-form">
+		<%= form_tag login_path, remote: true, id: 'login' do %>
+			<p>login with your gumroad account</p>
+			<%= text_field_tag :email, nil, placeholder: "email", :class => :email %>
+			<%= password_field_tag :password, nil, placeholder: "password", :class => :password %>
+			<%= submit_tag "login", class: "btn" %>
+		<% end %>
+		</div>
+
+		<div id="login_spinner"></div>
+
+		<% if cookies[:token] == nil  %>
+			<%= link_to "Manage Products", "#", id: "reveal-login", class: "btn" %>
+			<%= link_to 'Logout', logout_path, id: 'logout', class: 'btn', remote: true, style: "display:none" %>
+		<% else %>
+			<%= link_to "Manage Products", "#", id: "reveal-login", class: "btn", style: "display:none" %>
+			<%= link_to 'Logout', logout_path, id: 'logout', class: 'btn', remote: true %>
+		<% end %>
+		
 	</div>
 <% end %>
+
+<div class="products">
+		
+		<% if @products.count == 0 && cookies[:token] == nil && @user_is_admin == true %>
+			<div class = "step3-help">
+				<h1>Boom!</h1>
+				<h2>This is your brand spanking new store</h2>
+			
+				<p>All you need now are products. Click "Manage Products" up the top right and log in with your Gumroad account to start adding items.</p>
+			</div>
+		<% end %>
+		
+		
+		
+		<% if cookies[:token] != nil %>
+			<%= render 'form' %>
+		<% end %>
+
 	<div id="first_product"></div>
 	
 	<% @products.each do |product| %>
@@ -21,12 +50,25 @@
 <script>
 $(document).ready(function() {
 	$('#new_product').bind('fileuploadsubmit', function (e, data) {
-		console.log("<%= escape_javascript(image_tag 'ajax-loader.gif') %>")
-		$('.file-drop-zone').html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
+		showSpinner($('.file-drop-zone'))
 		$('.file-drop-zone').attr('class', 'product-loading')
 	})
 	
 	reloadMasonry()	
+	
+	$('#login').submit(function(){
+		// $("#login-form").hide("slide", { direction: "right" }, 400);
+		$("#login-form").hide();
+		$("#login_spinner").show();
+		showSpinner($('#login_spinner'));
+	});
+	
+	$('#logout').click(function(){
+		// $("#login-form").hide("slide", { direction: "right" }, 400);
+		$("#logout").hide();
+		$("#login_spinner").show();
+		showSpinner($('#login_spinner'));
+	});
 	
 	$('#reveal-login').click(function() {
 	  $("#login-form").show("slide", { direction: "right" }, 400);
@@ -34,13 +76,14 @@ $(document).ready(function() {
 	});
 });
 
-function showSpinner() {
+function showSpinner(element) {
+	console.log(element)
 	console.log('showing spinner')
-	$('#add_details').html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
+	$(element).html("<%= escape_javascript(image_tag 'ajax-loader.gif', class: 'spinner' ) %>")
 }
 
 function hideProduct(product) {
-	$('#'+product).hide();
+	$('#'+product).remove();
 	reloadMasonry()
 }
 

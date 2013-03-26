@@ -1,9 +1,9 @@
 	<div class="product-box" id="<%= "product_box_#{product.id}" %>">
-	<% if @user_is_admin == true %>
+	<div class='close-button' style="<% unless cookies[:token].present? %>display: none;<% end %>">
 		<%= link_to product, method: :delete, remote: true, onClick: "hideProduct('product_box_#{product.id}')" do %>
 			<%= image_tag("close.png", class: "delete_product") %>
 		<% end %>
-	<% end %>
+		</div>
 		<%= image_tag product.image_url(:thumb).to_s %>
 
 		

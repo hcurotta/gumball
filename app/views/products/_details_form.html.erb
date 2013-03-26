@@ -1,6 +1,6 @@
 <div id="add_details">
 	<%= form_for @product, :html => { :onsubmit =>
-	'showSpinner()' }, remote: true do |f| %>
+	"showSpinner($('#add_details'))" }, remote: true do |f| %>
 	
 	    <%= f.text_field :name, :placeholder => "Product Name" %>
 

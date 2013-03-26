@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317122734) do
+ActiveRecord::Schema.define(:version => 20130324063852) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20130317122734) do
     t.integer  "price"
     t.string   "gumroad_id"
     t.integer  "qty"
+    t.integer  "store_id"
+  end
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.string   "fb_page_id"
+    t.string   "owner_email"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
