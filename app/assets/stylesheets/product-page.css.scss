@@ -1,0 +1,21 @@
+.product-page {
+	text-align: center;
+	font-family: 'Arvo', serif;
+	h1 {
+		font-size: 50px;
+		color: rgba(0, 168, 255, 0.8);
+/*		text-shadow: 3px 3px 0 rgba(255, 0, 180, 0.5);*/
+		font-weight: bold;
+		padding: 15px 0px 0px 20px;
+	}
+	
+	h2 {
+		font-size: 25px;
+	}
+	
+	img {
+		max-width: 400px;
+		border-radius: 10px;
+		margin: 20px;
+	}
+}

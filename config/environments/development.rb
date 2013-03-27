@@ -35,4 +35,5 @@ Gumball::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
   
+  ENV['HOST_NAME'] = 'https://localhost:3000/'
 end

@@ -5,4 +5,4 @@
 - Handle failed gumroad login DONE
 - Add "You have no products" for admin DONE
 - turn store-name into a 'handle' and make it linkable. Also check for duplicates.
-- make product link dynamic (create product page)
+- make product link dynamic (create product page) DONE

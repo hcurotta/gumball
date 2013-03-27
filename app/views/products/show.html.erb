@@ -1,0 +1,7 @@
+<div class="product-page">
+	<h1>Your <%= @product.name %> is on the way!</h1>
+	<%= image_tag @product.image %>
+	<h2>We've got your order and will be in touch soon.</h2>
+	</br>
+	<p>Got issues? email <%= link_to @product.store.owner_email,  "mailto:#{@product.store.owner_email}" %></p>
+</div>

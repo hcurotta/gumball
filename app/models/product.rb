@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
     
     link = JSON.parse(RestClient.post 'https://api.gumroad.com/v1/links', 
        {:token => token,
-          :url => 'www.google.com',
+          :url => "#{ENV['HOST_NAME']}products/#{id}",
           :description => description,
           # :preview => @product.image.file.read,
           :name => name, 
