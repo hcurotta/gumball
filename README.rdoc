@@ -1,7 +1,7 @@
 == To Do
 
 - remove offline stubs DONE
-- Validations on product details (update product)
+- Validations on product details (update product) DONE
 - Handle failed gumroad login DONE
 - Add "You have no products" for admin DONE
 - turn store-name into a 'handle' and make it linkable. Also check for duplicates.

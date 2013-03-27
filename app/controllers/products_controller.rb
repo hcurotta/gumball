@@ -28,10 +28,8 @@ require 'open-uri'
     
     @product = Product.find_by_id(params[:id])    
     @product.update_attributes(params[:product])
+    @product.price *= 100 if @product.price
     
-    @product.price *= 100
-    @product.save
-
     #     
     # fname = File.basename($0) << '.' << $$.to_s
     #  File.open(fname, 'wb') do |fo|
@@ -46,18 +44,18 @@ require 'open-uri'
     token = cookies[:token]
     
     if @product.create_link(token)
-      render template: ''
+      render template: 'products/update'
     else
-      
+      render template: 'products/update-failed'
     end
    
+   @product.save
   
   end
   
   def destroy
     @product = Product.find(params[:id])
     # @product.delete_on_gumroad(cookies[:token])
-    
     @product.destroy
   end
   

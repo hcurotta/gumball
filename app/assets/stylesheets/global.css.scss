@@ -6,6 +6,9 @@ body {
 	margin: 0px 30px;
 	font-family: sans-serif;
 	
+	input, a, textarea{
+		font-family: 'Arvo', serif;		
+	}
 }
 
 .step3-help {
@@ -207,6 +210,20 @@ img.spinner {
 	width: 40px;
 	margin-right: 50px;
 	display:inline-block;
+}
+
+
+#add_details {
+	p.error {
+		color: red;
+		text-align: left;
+		font-size: 10px;
+	}
+	
+	form {
+		margin: 0px;
+	}
+	
 }
 
 #add_details input[type="text"], textarea {

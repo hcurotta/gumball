@@ -1,0 +1,8 @@
+$("#add_details").html("<%= escape_javascript(render('details_form', :@product => @product)) %>");
+$("#add_details").prepend('<p class="error">name, qty and price required</p>')
+
+var $container = $('.products');
+$container.imagesLoaded(function(){
+	$container.masonry();
+	$container.masonry('reload')
+});
