@@ -1,8 +1,14 @@
-== To Do
+== TO DO 
+- turn store-name into a 'handle' and make it linkable. Also check for duplicates.
+- personalise store with custom css for each
+- product collections
+
+== DONE
 
 - remove offline stubs DONE
 - Validations on product details (update product) DONE
 - Handle failed gumroad login DONE
 - Add "You have no products" for admin DONE
-- turn store-name into a 'handle' and make it linkable. Also check for duplicates.
 - make product link dynamic (create product page) DONE
+
+
