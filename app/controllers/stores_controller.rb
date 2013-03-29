@@ -6,6 +6,7 @@ class StoresController < ApplicationController
       @user_is_admin = user_is_admin?
     else
       @fb_page_id = params[:fb_page_id]
+      @user_is_admin = false
     end
     session[:fb_page_id] = @fb_page_id
     
@@ -14,7 +15,7 @@ class StoresController < ApplicationController
     if @store.new_record?
       render action: "new"
     else
-      redirect_to "/products/?fb_page_id=#{@fb_page_id}&is_admin=true"
+      redirect_to "/products/?fb_page_id=#{@fb_page_id}&is_admin=@user_is_admin"
     end
   
   end
