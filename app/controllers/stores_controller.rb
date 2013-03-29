@@ -15,7 +15,7 @@ class StoresController < ApplicationController
     if @store.new_record?
       render action: "new"
     else
-      redirect_to "/products/?fb_page_id=#{@fb_page_id}&is_admin=@user_is_admin"
+      redirect_to "/products/?fb_page_id=#{@fb_page_id}&is_admin=#{@user_is_admin}"
     end
   
   end
