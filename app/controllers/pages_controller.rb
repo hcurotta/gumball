@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   
-  def login
-
+  def added
     
   end
 end

@@ -1,6 +1,7 @@
 Gumball::Application.routes.draw do
   
   match "/" => "stores#home"
+  match "/added" => "pages#added"
   
   post "/login" => "sessions#login", as: :login
   get "/logout" => "sessions#logout", as: :logout
