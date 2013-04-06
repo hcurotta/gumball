@@ -50,11 +50,11 @@
 $(document).ready(function() {
 	$('.tooltip').tooltipster();
 	
-	if (Modernizr.fileinput && Modernizer.touch) {
-		$("#new_product").show();
-		$(".file-drop-zone").hide();
-	}
-	
+	// if (Modernizr.fileinput && Modernizer.touch) {
+	// 	$("#new_product").show();
+	// 	$(".file-drop-zone").hide();
+	// }
+	// 
 	
 	$('#new_product').bind('fileuploadsubmit', function (e, data) {
 		showSpinner($('.file-drop-zone'))
