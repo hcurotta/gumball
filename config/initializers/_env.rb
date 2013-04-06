@@ -1,7 +1,7 @@
 ENV["AWS_ACCESS_KEY_ID"] = 'AKIAJTHDTGA4IP5A7L6Q'
 ENV["AWS_SECRET_ACCESS_KEY"] = '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'
 ENV["AWS_S3_BUCKET"] = 'gumballer'
-
+ENV["fb_app_id"] = '424081527685193'
 
 # TODO THIS MUSNT BE ON HEROKU ignored anyway but fyi
 require 'openssl'
