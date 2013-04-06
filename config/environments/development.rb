@@ -36,4 +36,5 @@ Gumball::Application.configure do
   config.assets.debug = true
   
   ENV['HOST_NAME'] = 'https://localhost:3000/'
+  ENV["fb_app_id"] = '424081527685193'
 end
