@@ -8,6 +8,8 @@ Gumball::Application.routes.draw do
   
   post "/sold" => "products#sold"
   
+  get "/products/:id/share" => "products#share", as: :share_product
+  
   resources :products
   
   resources :stores, :except => :show

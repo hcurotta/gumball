@@ -1,0 +1,13 @@
+
+<div class='product-buttons' style='<% unless logged_in %>display: none;<% end %>'>
+	<p>
+	
+	<%= link_to product, method: :delete, remote: true, onClick: "hideProduct('product_box_#{product.id}')" do %>
+		<i class="icon-trash tooltip" title="Delete Item"></i>
+	<% end %>
+	
+	<%= link_to "#", onClick: "postProduct('#{product.name}', '#{product.description}', '#{product.image}', '#{product.short_url}')" do %>
+		<i class="icon-facebook-sign tooltip" title="Post to your Page Feed"></i>
+	<% end %>
+	</p>
+</div>

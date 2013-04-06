@@ -8,11 +8,11 @@ require 'open-uri'
     @products = @store.products.all
     @products.reverse!
     
-    @user_is_admin = params[:is_admin].to_bool
-    puts params[:is_admin]
-    puts @user_is_admin.class
-    # @user_is_admin = true
+    @user_is_admin = params[:is_admin].to_bool #TODO reference only fb derived param as this is insecure
     
+    @logged_in = (cookies[:token] != nil and @user_is_admin == true)
+
+    # @user_is_admin = true
     
   end
   
@@ -71,6 +71,15 @@ require 'open-uri'
   
   def show
     @product = Product.find_by_id(params[:id])
+    
+  end
+  
+  def share
+    @product = Product.find_by_id(params[:id])
+    
+    respond_to do |format|
+      format.js
+    end
   end
   
 end

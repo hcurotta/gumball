@@ -16,4 +16,5 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require jquery.masonry.min
+//= require jquery.tooltipster.min
 //= require_tree .

@@ -75,9 +75,14 @@ a.btn {
 
 
 .product-box {
+	float:left;
+}
+
+.product-details {
+	position:relative;
+	z-index: 2;
 	width: 200px;
 	height: auto;
-	float: left;
 	margin: 10px 10px 10px 10px;
 	padding: 10px 10px 10px 10px;
 	text-align: center;
@@ -90,14 +95,72 @@ a.btn {
 	border: 2px solid #ffffff;
 	box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
 	-moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
-	-webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+	-webkit-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);	
+	
+	h2 {
+		font-size: 1.4em;
+		font-weight: bold;
+	}
+
+
+	a {
+		margin-left: 50px;
+	}
+	
+	p {
+		font-size: 0.9em;
+		padding-top: 5px;
+		margin-bottom: 10px;
+		text-align: left;
+	}
+	
+}
+
+.stock-left {
+	color: green;
+}
+
+.sold {
+	color: red;
 }
 
 
-.product-box h2 {
-	font-size: 1.4em;
-	font-weight: bold;
+
+
+.product-buttons {
+	position:relative;
+	z-index: 1;
+	width: 200px;
+	height: auto;
+	float: left;
+	padding: 20px 10px 5px 10px;
+	margin: -20px 10px 10px 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: white;
+	border: 2px solid #D7D7D7;
+	
+	p {
+		font-size: 20px;
+		letter-spacing: 4px;
+	}
+	
+	a {
+		text-decoration: none;
+		color: #A8A8A8;
+	}
+	
+	a:hover {
+		color: black;
+	}
+	
+	.hint {
+		z-index: 10;
+		letter-spacing: 1px;
+	}
 }
+
 
 h3.ribbon
 {
@@ -130,11 +193,6 @@ h3.ribbon:after
 
 
 
-h2.price {
-	float: right;
-	padding-left: 5px;
-	color: #006A8B;
-}
 
 
 img.delete_product {
@@ -144,25 +202,6 @@ img.delete_product {
 	max-width: 20px;
 }
 
-.product-box p {
-	font-size: 0.9em;
-	padding-top: 5px;
-	margin-bottom: 10px;
-	text-align: left;
-}
-
-.product-box .stock-left {
-	color: green;
-	float: left;
-}
-
-.product-box .sold {
-	color: red;
-}
-
-.product-box a {
-	float: right;
-}
 
 .file-drop-zone {
     display:table;
@@ -198,18 +237,20 @@ img.spinner {
 }
 
 
-.price-qty {
-	
+.qty-field {
+	display:inline;
+	float:left;
 }
 .price {
     width: 120px;
 	display:inline;
+	
 }
 
-.qty-field {
-	width: 40px;
-	margin-right: 50px;
-	display:inline-block;
+h2.price {
+	float: right;
+	padding-left: 5px;
+	color: #006A8B;
 }
 
 

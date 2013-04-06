@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>Gumball</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href="/assets/application.css?body=1&v=4" media="all" rel="stylesheet" type="text/css">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 	
 
 	<script type="text/javascript" src="https://gumroad.com/js/gumroad.js"></script>
+	<script src="https://connect.facebook.net/en_US/all.js" type="text/javascript" charset="utf-8"></script>
 	
 	<!-- Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'>
@@ -17,7 +18,34 @@
 	
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>
+	  window.fbAsyncInit = function() {
+	    // init the FB JS SDK
+	    FB.init({
+	      appId      : '424081527685193', // App ID from the App Dashboard
+	      // channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File for x-domain communication
+	      status     : true, // check the login status upon init?
+	      cookie     : true, // set sessions cookies to allow your server to access the session?
+	      xfbml      : true  // parse XFBML tags on this page?
+	    });
 
+	    // Additional initialization code such as adding Event Listeners goes here
+	  };
+
+	  // Load the SDK's source Asynchronously
+	  // Note that the debug version is being actively developed and might 
+	  // contain some type checks that are overly strict. 
+	  // Please report such bugs using the bugs tool.
+	  (function(d, s, id, debug){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk', /*debug*/ false));
+	</script>
+	
 <%= yield %>
 
 </body>

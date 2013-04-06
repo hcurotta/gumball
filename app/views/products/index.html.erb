@@ -9,15 +9,14 @@
 			<%= submit_tag "login", class: "btn" %>
 		<% end %>
 		</div>
-
 		<div id="login_spinner"></div>
 
-		<% if cookies[:token] == nil  %>
-			<%= link_to "Manage Products", "#", id: "reveal-login", class: "btn" %>
-			<%= link_to 'Logout', logout_path, id: 'logout', class: 'btn', remote: true, style: "display:none" %>
-		<% else %>
+		<% if @logged_in %>
 			<%= link_to "Manage Products", "#", id: "reveal-login", class: "btn", style: "display:none" %>
 			<%= link_to 'Logout', logout_path, id: 'logout', class: 'btn', remote: true %>
+		<% else %>
+			<%= link_to "Manage Products", "#", id: "reveal-login", class: "btn" %>
+			<%= link_to 'Logout', logout_path, id: 'logout', class: 'btn', remote: true, style: "display:none" %>
 		<% end %>
 		
 	</div>
@@ -25,7 +24,7 @@
 
 <div class="products">
 		
-		<% if @products.count == 0 && cookies[:token] == nil && @user_is_admin == true %>
+		<% if @products.count == 0 && @logged_in == false && @user_is_admin == true %>
 			<div class = "step3-help">
 				<h1>Boom!</h1>
 				<h2>This is your brand spanking new store</h2>
@@ -36,19 +35,27 @@
 		
 		
 		
-		<% if cookies[:token] != nil %>
+		<% if @logged_in %>
 			<%= render 'form' %>
 		<% end %>
 
 	<div id="first_product"></div>
 	
 	<% @products.each do |product| %>
- 		<%= render 'product', {:product => product, :user_is_admin => @user_is_admin} %>
+ 		<%= render 'product', {:product => product, :user_is_admin => @user_is_admin, :logged_in => @logged_in} %>
 	<% end %>	
 </div>
 
 <script>
 $(document).ready(function() {
+	$('.tooltip').tooltipster();
+	
+	if (Modernizr.fileinput && Modernizer.touch) {
+		$("#new_product").show();
+		$(".file-drop-zone").hide();
+	}
+	
+	
 	$('#new_product').bind('fileuploadsubmit', function (e, data) {
 		showSpinner($('.file-drop-zone'))
 		$('.file-drop-zone').attr('class', 'product-loading')
@@ -57,14 +64,12 @@ $(document).ready(function() {
 	reloadMasonry()	
 	
 	$('#login').submit(function(){
-		// $("#login-form").hide("slide", { direction: "right" }, 400);
 		$("#login-form").hide();
 		$("#login_spinner").show();
 		showSpinner($('#login_spinner'));
 	});
 	
 	$('#logout').click(function(){
-		// $("#login-form").hide("slide", { direction: "right" }, 400);
 		$("#logout").hide();
 		$("#login_spinner").show();
 		showSpinner($('#login_spinner'));
@@ -92,9 +97,41 @@ function reloadMasonry() {
 	$container.imagesLoaded(function(){
 		$container.masonry({
 	    // options
+			itemSelector: '.product-box',
 	    columnWidth : 250,
 			isAnimated: true
 		});
 	});
 }
+
+function fileUploadAvailable() {
+	var elem = document.createElement('input');
+	elem.type = 'file';
+	return !elem.disabled;
+}
+
+function postProduct(name, description, image, url) {
+	FB.ui(
+	  {
+	    method: 'feed',
+	    name: name,
+	    link: url,
+	    picture: image,
+	    caption: name,
+	    description: description,
+			to: <%= params[:fb_page_id]%>,
+			from: <%= params[:fb_page_id] %>
+	  },
+	  function(response) {
+	    if (response && response.post_id) {
+	      alert('Post was published.');
+	    } else {
+	      alert('Post was not published.');
+	    }
+	  }
+	);
+	
+}
+
+
 </script>

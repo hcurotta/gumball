@@ -32,7 +32,7 @@ gem 'rest-client'
 gem 'jquery-rails'
 gem 'carrierwave'
 gem 'fog'
-
+gem 'font-awesome-rails'
 
 
 # To use ActiveModel has_secure_password
